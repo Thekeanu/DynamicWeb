@@ -6,13 +6,24 @@
     const list = document.getElementById('locations');
     console.log(resultaat);
   // inzetten van de data in de lijst
-    resultaat.results.forEach(werk => {
-      const li = document.createElement('li');
+    resultaat.results.forEach(werk => { 
+      const li = document.createElement('li');  
       li.textContent = `${werk.naam_fresco_nl}`;
       list.appendChild(li);
     });
   })
   .catch(error => {
-    //document.getElementById('error-message').textContent = `Er ging iets mis: ${error.message}`;
+    //document.getElementById('error').textContent = `Er ging iets mis: ${error.message}`;
     console.log(error.message);
   });
+
+//filter functies
+filterNaam =  () => {
+  naam = document.getElementById('filterNaam');
+  naam.addEventlistener   
+}
+
+
+
+
+
