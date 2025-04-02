@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commic book tour in Brussel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div id="error-message" style="color: red; display: none;"></div> <!-- Error message div -->
+        <h1>Commic book tour in Brussel</h1>
+        <button id="themeToggle" class="theme-button">Themakleur veranderen</button>
+        <input type="text" id="search" placeholder="Zoek een locatie">
+        <select id="author-filter">
+            <option value="all">Alle auteurs</option>
+        </select>
+        <select id="location-filter">
+            <option value="all">Alle locaties</option>
+        </select>
+        <select id="year-filter">
+            <option value="all">Alle jaartallen</option>
+        </select>
+
+        <button id="sort">Sorteren</button>
+    </header>
+    
+    <main>
+        <section id="locations">
+            <h2>Lijst muurschilder</h2>
+            <div id="locations-container" class="grid-container"></div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Afbeelding</th>
+                        <th>Naam</th>
+                        <th>Beschrijving</th>
+                    </tr>
+                </thead>
+                <tbody id="locations-lijst">
+                </tbody>
+            </table>
+        </section>
+
+        <section id="favorietes">
+            <h2>Favorieten muurschilder</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Afbeelding</th>
+                        <th>Naam</th>
+                        <th>Beschrijving</th>
+                    </tr>
+                </thead>
+                <tbody id="favorietes-lijst">
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; Commic tour in Brussel</p>
+        <p>Ontwikkeld door Damian en Keanu</p>
+    </footer>
+    
+    <script src="javascript/fetch.mjs" type="module"></script>
+</body>
+</html>
