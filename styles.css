@@ -58,6 +58,16 @@ section {
     margin-top: 10px;
 }
 
+td, th {
+  border: 1px solid #7e80d3;
+  text-align: left;
+  padding: 4px;
+}
+
+td img {
+    max-width: 100%;
+}
+
 /* Footer */
 footer {
     text-align: center;
