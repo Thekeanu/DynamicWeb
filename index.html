@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commic book tour in Brussel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+    <h1>Commic book tour in Brussel</h1>
+    <button id="themeToggle" class="theme-button">Themakleur veranderen</button>
+    <input type="text" id="search" placeholder="Zoek een locatie">
+    <select id="filter">
+        <option value="all">Alle categorieën</option>
+        <option value="Datum">Jaartal</option>
+        <option value="type">Naam</option>
+        </select>
+        <button id="sort">Sorteren</button>
+    </header>
+    
+    <main>
+        <section id="locations">
+        <h2>Lijst muurschilder </h2>
+        <div id="locations-lijst">
+        </div>
+    </section>
+        
+    <section id="favorietes">
+        <h2>Favorieten muurschilder</h2>
+        <div id="favorietes-lijst">
+        </div>
+    </section>
+    </main>
+
+    <footer>
+        <p>&copy; Commic tour in Brussel</p>
+        <p>Ontwikkeld door Damian en Keanu</p>
+    </footer>
+    <script src="javascript/fetch.mjs" type="module"></script>
+
+</body>
+</html>

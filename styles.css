@@ -1,0 +1,63 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+body.dark-theme {
+    background-color: #333;
+    color: #fff;
+}
+
+body.light-theme {
+    background-color: #fff;
+    color: #333;
+}
+
+.theme-button {
+    padding: 10px;
+    margin: 20px;
+    cursor: pointer;
+}
+header {
+    background: #0073e6;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+header input, header select, header button {
+    margin: 5px;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+}
+
+main {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+section {
+    background: white;
+    color: blue;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 45%;
+}
+
+#Lijst-Locaties, #favorietes-lijst {
+    margin-top: 10px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background: #0073e6;
+    color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
