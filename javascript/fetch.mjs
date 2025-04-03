@@ -34,6 +34,7 @@ const jaartallen = [];
       const tableAdress = document.createElement('td');
       const tableUitgever = document.createElement('td');
       const tableFav = document.createElement('td');
+      const tableMeer = document.createElement('td');
 
 
       // Gegevens van de API in de table cell zetten
@@ -56,7 +57,15 @@ const jaartallen = [];
       buttonFav.innerText = "Toevoegen aan favorieten";
       buttonFav.addEventListener('click', () => addToFavorites(werk));
       tableFav.appendChild(buttonFav);
-      
+
+
+      //aanmaken lees meer button
+      const leesMeer = document.createElement('a');
+      leesMeer.href = werk.link_site_striproute;
+      leesMeer.text = "Lees meer"
+      leesMeer.target = "blank"
+      tableMeer.appendChild(leesMeer);
+
       // Toevoegen van cellen aan de tabel
 
       tableR.appendChild(tableImage);
@@ -67,6 +76,7 @@ const jaartallen = [];
       tableR.appendChild(tableDate);
       tableR.appendChild(tableSurface);
       tableR.appendChild(tableAdress);
+      tableR.appendChild(tableMeer);
       tableR.appendChild(tableFav);
       list.appendChild(tableR);
     });
@@ -118,7 +128,7 @@ function showFavorites() {
         const tableSurface = document.createElement('td');
         const tableAdress = document.createElement('td');
         const tableUitgever = document.createElement('td');
-        const tableFav = document.createElement('td');
+        const tableMeer = document.createElement('td');
 
 
       // Gegevens van de API in de table cell zetten
@@ -141,6 +151,14 @@ function showFavorites() {
         removeBtn.addEventListener('click', () => removeFromFavorites(werk));
         tableRemove.appendChild(removeBtn);
         
+        //lees meer knop maken
+        const leesMeer = document.createElement('a');
+        leesMeer.href = werk.link_site_striproute;
+        leesMeer.text = "Lees meer"
+        leesMeer.target = "blank"
+        tableMeer.appendChild(leesMeer);
+
+
         tableR.appendChild(tableImage);
       tableR.appendChild(tableName);
       tableR.appendChild(tableDrawer);
@@ -149,7 +167,9 @@ function showFavorites() {
       tableR.appendChild(tableDate);
       tableR.appendChild(tableSurface);
       tableR.appendChild(tableAdress);
+      tableR.appendChild(tableMeer);
         tableR.appendChild(tableRemove);
+        
         favList.appendChild(tableR);
     });
 }
