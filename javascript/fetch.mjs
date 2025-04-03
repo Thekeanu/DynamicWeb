@@ -1,18 +1,5 @@
 'use  strict';
 
-// voeg toe aan favorieten
-
-const favorites = (werk) => {
-  let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    if (!favorites.some(fav => fav.naam_fresco_nl === werk.naam_fresco_nl)) {
-        favorites.push(werk);
-        localStorage.setItem('favorites', JSON.stringify(favorites));
-        alert(`${werk.naam_fresco_nl} is toegevoegd aan je favorieten!`);
-    } else {
-        alert(`${werk.naam_fresco_nl} staat al in je favorieten.`);
-    }
-}
-
   fetch('https://opendata.brussels.be/api/explore/v2.1/catalog/datasets/bruxelles_parcours_bd/records?limit=2')
   .then( response => response.json())
   .then(resultaat => {
@@ -51,12 +38,22 @@ const favorites = (werk) => {
       const buttonFav = document.createElement('button');
       buttonFav.name = `${werk.naam_fresco_nl}`;
       buttonFav.innerText = "toevoegen aan favorieten";
-      const buttonId = `${werk.naam_fresco_nl}`.replaceAll(" ", "-");
-      buttonFav.id = buttonId;
       buttonFav.classList.add('favButton');
       tableFav.appendChild(buttonFav);
       
-      
+      addtofilters();
+    
+      buttonFav.onclick = (werk) => {
+        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        if (!favorites.some(fav => fav.naam_fresco_nl === this.werk.naam_fresco_nl)) {
+            favorites.push(werk);
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            alert(`${werk.naam_fresco_nl} is toegevoegd aan je favorieten!`);
+        } else {
+            alert(`${werk.naam_fresco_nl} staat al in je favorieten.`);
+        }
+      };
+
       //toevoegen van cel in de tabel
       tableR.appendChild(tableImage);
       tableR.appendChild(tableName);
@@ -73,12 +70,12 @@ const favorites = (werk) => {
 
     });
     
-    const favButtons = document.querySelectorAll(".favButton");
+    // const favButtons = document.querySelectorAll(".favButton");
       
-    favButtons.forEach( button => {
-      const btn = document.getElementById(`${button.id}`);
-      btn.onclick = favorites(button.id);
-    })
+    // favButtons.forEach( button => {
+    //   const btn = document.getElementById(`${button.id}`);
+    //   btn.onclick = favorites(button.id);
+    // })
     
   })
   .catch(error => {
