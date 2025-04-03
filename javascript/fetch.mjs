@@ -244,9 +244,9 @@ function listenFilters() {
 
 function filterData() {
   let locationFilterValue = document.getElementById('location-filter').value.toLowerCase().trim();
-  if (locationFilterValue != "all" || locationFilterValue != "haren") {
+  if (locationFilterValue != "all" && locationFilterValue != "haren") {
     locationFilterValue = locationFilterValue.split("-");
-    locationFilterValue = locationFilterValue[1];
+    locationFilterValue = locationFilterValue[1].trim();
  }
   const auteurFilterValue = document.getElementById('author-filter').value.toLowerCase().trim();
   const jaarFilterValue = document.getElementById('year-filter').value.trim();
