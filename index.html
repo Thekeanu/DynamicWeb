@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Commic book tour in Brussel</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
@@ -21,21 +21,20 @@
         <select id="year-filter">
             <option value="all">Alle jaartallen</option>
         </select>
-
         <button id="sort">Sorteren</button>
+        <button id="show-favorites" class="theme-button">Toon favorieten</button>
     </header>
     
     <main>
         <section id="locations">
             <h2>Lijst muurschilder</h2>
-            <div id="locations-container" class="grid-container"></div>
-
             <table>
                 <thead>
                     <tr>
                         <th>Afbeelding</th>
                         <th>Naam</th>
                         <th>Beschrijving</th>
+                        <th>Actie</th>
                     </tr>
                 </thead>
                 <tbody id="locations-lijst">
@@ -43,7 +42,7 @@
             </table>
         </section>
 
-        <section id="favorieten">
+        <section id="favorieten" style="display: none;">
             <h2>Favorieten muurschilder</h2>
             <table>
                 <thead>
@@ -66,5 +65,6 @@
     </footer>
     
     <script src="javascript/fetch.mjs" type="module"></script>
+    <script src="javascript/themaswitcher.mjs" type="module"></script>  
 </body>
 </html>

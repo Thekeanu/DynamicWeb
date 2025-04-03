@@ -1,0 +1,208 @@
+/* Algemene styling */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-theme {
+    background-color: #1e1e1e;
+    color: #fff;
+}
+
+body.light-theme {
+    background-color: #ffffff;
+    color: #333;
+}
+
+/* Header styling */
+header {
+    background: linear-gradient(135deg, #005bb5, #0073e6);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header input, header select, header button {
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+header input[type="text"] {
+    width: 200px;
+    border: 1px solid #ddd;
+}
+
+header input:focus, header select:focus, header button:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 115, 230, 0.8);
+}
+
+/* Thema-knop */
+.theme-button {
+    background-color: white;
+    color: #0073e6;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.theme-button:hover {
+    background-color: #0073e6;
+    color: white;
+}
+
+/* Layout-secties */
+main {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+section {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 48%;
+    transition: all 0.3s ease;
+}
+
+section:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
+}
+
+/* Tabellen */
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background: linear-gradient(135deg, #005bb5, #0073e6);
+    color: white;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+    transition: background-color 0.3s ease;
+}
+
+/* Knoppen in tabellen */
+button {
+    background-color: #0073e6;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #005bb5;
+}
+
+/* Responsief ontwerp */
+@media screen and (max-width: 768px) {
+    /* Header tekst */
+    header h1 {
+        font-size: 24px;
+    }
+
+    /* Maak de invoervelden, knoppen en select-menu's breder voor kleinere schermen */
+    #search,
+    #author-filter,
+    #location-filter,
+    #year-filter,
+    #sort,
+    #show-favorites {
+        width: 100%;
+        margin: 10px 0;
+        padding: 12px;
+    }
+
+    /* Zorg ervoor dat de knoppen in de header goed uitlijnen */
+    #themeToggle,
+    #show-favorites {
+        width: 100%;
+    }
+
+    /* Tabelinstellingen voor kleine schermen */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f4f4f4;
+    }
+
+    /* Verbergen van favorieten-sectie standaard bij kleinere schermen */
+    #favorieten {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    /* Specifieke stijlen voor zeer kleine schermen zoals telefoons */
+    header h1 {
+        font-size: 20px;
+    }
+
+    button {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+
+    input, select {
+        width: 100%;
+    }
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background: #0073e6;
+    color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+}

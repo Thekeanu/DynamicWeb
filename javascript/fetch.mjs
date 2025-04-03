@@ -1,6 +1,6 @@
 'use strict';
 
-fetch('https://opendata.brussels.be/api/explore/v2.1/catalog/datasets/bruxelles_parcours_bd/records?limit=5')
+fetch('https://opendata.brussels.be/api/explore/v2.1/catalog/datasets/bruxelles_parcours_bd/records?limit=10')
   .then(response => response.json())
   .then(resultaat => {
     // Selecteren van de lijst
@@ -13,28 +13,18 @@ fetch('https://opendata.brussels.be/api/explore/v2.1/catalog/datasets/bruxelles_
       const tableR = document.createElement('tr');
       
       // Aanmaken table kolommen
-      const tableName = document.createElement('td');
       const tableImage = document.createElement('td');
-      const tableDate = document.createElement('td');
-      const tableDrawer = document.createElement('td');
-      const tableDrawerKunst = document.createElement('td');
-      const tableSurface = document.createElement('td');
-      const tableAdress = document.createElement('td');
-      const tableUitgever = document.createElement('td');
+      const tableName = document.createElement('td');
+      const tableDescription = document.createElement('td');
       const tableFav = document.createElement('td');
 
       // Gegevens van de API in de table cell zetten
-      tableName.textContent = werk.naam_fresco_nl;
-      tableDate.textContent = werk.date;
-      tableDrawer.textContent = werk.dessinateur;
-      tableSurface.textContent = werk.surface_m2;
-      tableAdress.textContent = werk.adres;
-      tableDrawerKunst.textContent = werk.realisateur;
-      tableUitgever.textContent = werk.maison_d_edition;
+      tableName.textContent = werk.naam_fresco_nl || 'Onbekende naam';
+      tableDescription.textContent = `${werk.dessinateur || 'Onbekende tekenaar'} - ${werk.realisateur || 'Onbekende kunstenaar'} (${werk.maison_d_edition || 'Onbekende uitgever'}, ${werk.date || 'Onbekend jaar'})`;
 
       // Aanmaken image
       const image = document.createElement('IMG');
-      image.src = werk.image;
+      image.src = werk.image || 'placeholder.jpg';
       image.width = 100;
       tableImage.appendChild(image);
 
@@ -47,12 +37,7 @@ fetch('https://opendata.brussels.be/api/explore/v2.1/catalog/datasets/bruxelles_
       // Toevoegen van cellen aan de tabel
       tableR.appendChild(tableImage);
       tableR.appendChild(tableName);
-      tableR.appendChild(tableDrawer);
-      tableR.appendChild(tableDrawerKunst);
-      tableR.appendChild(tableUitgever);
-      tableR.appendChild(tableDate);
-      tableR.appendChild(tableSurface);
-      tableR.appendChild(tableAdress);
+      tableR.appendChild(tableDescription);
       tableR.appendChild(tableFav);
       list.appendChild(tableR);
     });
@@ -86,8 +71,8 @@ function showFavorites() {
     
     favorites.forEach(werk => {
         const tableR = document.createElement('tr');
-        const tableName = document.createElement('td');
         const tableImage = document.createElement('td');
+        const tableName = document.createElement('td');
         const tableRemove = document.createElement('td');
 
         tableName.textContent = werk.naam_fresco_nl;
@@ -117,3 +102,18 @@ function removeFromFavorites(werk) {
     localStorage.setItem('favorites', JSON.stringify(favorites));
     showFavorites();
 }
+
+// is de favorieten sectie
+document.getElementById("show-favorites").addEventListener("click", function() {
+  const locationsSection = document.getElementById("locations");
+  const favoritesSection = document.getElementById("favorieten");
+  if (favoritesSection.style.display === "none") {
+      favoritesSection.style.display = "block";
+      locationsSection.style.display = "none";
+      this.textContent = "Toon alle locaties";
+  } else {
+      favoritesSection.style.display = "none";
+      locationsSection.style.display = "block";
+      this.textContent = "Toon favorieten";
+  }
+});
