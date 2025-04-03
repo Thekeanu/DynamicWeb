@@ -58,3 +58,26 @@ document.getElementById("show-map").addEventListener("click", function() {
         this.textContent = "Toon kaart";
     }
 });
+
+document.getElementById('sort').addEventListener('click', function() {
+    const list = document.getElementById('locations-lijst');
+    const rows = Array.from(list.querySelectorAll('tr'));
+
+    // Sorteer de rijen op basis van de naam van de tekenaar (kolom 1)
+    rows.sort((rowA, rowB) => {
+        const nameA = rowA.querySelectorAll('td')[1].textContent.trim().toLowerCase();
+        const nameB = rowB.querySelectorAll('td')[1].textContent.trim().toLowerCase();
+        
+        // Vergelijk de namen en sorteer alfabetisch
+        if (nameA < nameB) {
+            return -1;
+        } else if (nameA > nameB) {
+            return 1;
+        } else {
+            return 0;
+        }
+    });
+
+    // Voeg de gesorteerde rijen terug in de lijst
+    rows.forEach(row => list.appendChild(row));
+});
