@@ -1,15 +1,25 @@
+
 'use strict';
 
-fetch('https://opendata.brussels.be/api/explore/v2.1/catalog/datasets/bruxelles_parcours_bd/records?limit=5')
+const gemeentes = [];
+const auteurs = [];
+const jaartallen = [];
+
+  await fetch('https://opendata.brussels.be/api/explore/v2.1/catalog/datasets/bruxelles_parcours_bd/records?limit=5')
   .then(response => response.json())
   .then(resultaat => {
 
     // Selecteren van de lijst
     const list = document.getElementById('locations-lijst');
-    console.log(resultaat);
+   
 
     // Inzetten van de data in de lijst
-    resultaat.results.forEach(werk => { 
+    resultaat.results.forEach(werk => {
+      //filters
+      
+      addFiltersPlaats(werk, gemeentes);
+      addFiltersJaar(werk, jaartallen);
+      
       // Aanmaken table row
       const tableR = document.createElement('tr');
       
@@ -47,6 +57,7 @@ fetch('https://opendata.brussels.be/api/explore/v2.1/catalog/datasets/bruxelles_
       tableFav.appendChild(buttonFav);
       
       // Toevoegen van cellen aan de tabel
+
       tableR.appendChild(tableImage);
       tableR.appendChild(tableName);
       tableR.appendChild(tableDrawer);
@@ -59,14 +70,18 @@ fetch('https://opendata.brussels.be/api/explore/v2.1/catalog/datasets/bruxelles_
       list.appendChild(tableR);
     });
 
+
     // Laad favorieten bij opstarten
     showFavorites();
+    showFiltersPlaats();
+    showFiltersJaar();
+    
+
   })
   .catch(error => {
     document.getElementById('error-message').textContent = `Er ging iets mis: ${error.message}`;
     console.log(error.message);
   });
-
 
 // Favorieten opslaan in localStorage
 function addToFavorites(werk) {
@@ -112,13 +127,69 @@ function showFavorites() {
         favList.appendChild(tableR);
     });
 }
-
 // Favorieten verwijderen
 function removeFromFavorites(werk) {
     let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
     favorites = favorites.filter(fav => fav.naam_fresco_nl !== werk.naam_fresco_nl);
     localStorage.setItem('favorites', JSON.stringify(favorites));
     showFavorites();
+}
+
+//toevoegen gemeente aan filters
+
+function addFiltersPlaats(werk, gemeentes ){
+  const gemeente = werk.commune_gemeente
+  if(!gemeentes.some(gem => gemeente === gem)){
+   
+    gemeentes.push(gemeente);
+    
+  }
+}
+
+function addFiltersJaar(werk, jaartallen){
+  const jaartal = werk.date;
+  console.log(jaartal)
+  if(!jaartallen.some(jaar => Number(jaartal) === jaar)){
+    jaartallen.push(Number(jaartal));
+    console.log(jaartallen);
+  }
+}
+
+
+
+function showFiltersPlaats(){
+  const selectElement = document.getElementById('location-filter');
+
+  // Voeg voor elke gemeente een option tag toe aan het select element
+  gemeentes.forEach(function(gemeente) {
+  const option = document.createElement('option');
+  option.addEventListener('click', () => FilterGemeente());
+  option.textContent = gemeente;
+
+  // Zet de value van de option tag (kan hetzelfde zijn als de tekst)
+  option.value = gemeente.toLowerCase().replace(/\s+/g, '-'); // bijvoorbeeld 'amsterdam'
+
+  // Voeg de option toe aan het select element
+  selectElement.appendChild(option);
+});
+}
+
+function showFiltersJaar(){
+  const selectElement = document.getElementById('year-filter');
+
+  // Voeg voor elke gemeente een option tag toe aan het select element
+  jaartallen.forEach(function(jaartal) {
+  const option = document.createElement('option');
+  option.addEventListener('click', () => Filterjaartal());
+  option.textContent = jaartal;
+
+  // Zet de value van de option tag (kan hetzelfde zijn als de tekst)
+  option.value = jaartal; // bijvoorbeeld 'amsterdam'
+
+  // Voeg de option toe aan het select element
+  selectElement.appendChild(option);
+});
+  
 }
 // is de favorieten sectie
 document.getElementById("show-favorites").addEventListener("click", function() {
