@@ -4,7 +4,7 @@
 const gemeentes = [];
 const auteurs = [];
 const jaartallen = [];
-
+const Filters = ["all", "all", "all"];
   await fetch('https://opendata.brussels.be/api/explore/v2.1/catalog/datasets/bruxelles_parcours_bd/records?limit=5')
   .then(response => response.json())
   .then(resultaat => {
@@ -237,6 +237,9 @@ function listenFilters() {
    if (selectedValue != "all") {
        selectedValue = locationFilter.value.split("-");
        selectedValue = selectedValue[1].toLowerCase().trim();
+       Filters[2] = selectedValue;
+    }else {
+      Filters[2] = "all";
     }
 
     console.log(selectedValue);
@@ -245,7 +248,7 @@ function listenFilters() {
     let filteredRows = 0;
 
     rows.forEach(row => {
-      
+        
         const cells = row.querySelectorAll('td');
       const LKolom = cells[7];
       if (selectedValue === 'all' || LKolom.textContent.toLowerCase().includes(selectedValue)) {
