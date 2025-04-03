@@ -12,11 +12,13 @@
         <h1>Commic book tour in Brussel</h1>
         <select id="language-selector">
             <option value="nl">Nederlands</option>
-            <option value="en">English</option>
+            <option value="en">Frans</option>
         </select>
         
         <button id="themeToggle" class="theme-button">Themakleur veranderen</button>
-        <input type="text" id="search" placeholder="Zoek op naam">
+        <input type="text" id="search-name" placeholder="Zoek op naam...">
+       
+        <p id="no-results-message" style="color: red;"></p>
         <select id="author-filter">
             <option value="all">Alle tekenaars</option>
         </select>
@@ -48,7 +50,6 @@
                         <th>Adres</th>
                         <th>Lees meer</th>
                         <th>Favoriet</th>
-                        <th>Lees meer</th>
                         <tbody id="locations-lijst"></tbody>
                     </tr>
                 </thead>
