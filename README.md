@@ -62,7 +62,7 @@
     -cursus: Dynamic Web PRG1 @S2
     -chatgpt: https://chatgpt.com/share/67eed4c4-2a68-8009-bfa5-fd4ffdd797d4
     
-##Taakverdeling binnen het team
+## Taakverdeling binnen het team
 
     Keanu: 
       -filters
