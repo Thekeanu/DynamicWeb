@@ -107,8 +107,23 @@ function showFavorites() {
         const tableName = document.createElement('td');
         const tableImage = document.createElement('td');
         const tableRemove = document.createElement('td');
+        const tableDate = document.createElement('td');
+        const tableDrawer = document.createElement('td');
+        const tableDrawerKunst = document.createElement('td');
+        const tableSurface = document.createElement('td');
+        const tableAdress = document.createElement('td');
+        const tableUitgever = document.createElement('td');
+        const tableFav = document.createElement('td');
 
-        tableName.textContent = werk.naam_fresco_nl;
+
+      // Gegevens van de API in de table cell zetten
+      tableName.textContent = werk.naam_fresco_nl;
+      tableDate.textContent = werk.date;
+      tableDrawer.textContent = werk.dessinateur;
+      tableSurface.textContent = werk.surface_m2;
+      tableAdress.textContent = werk.adres;
+      tableDrawerKunst.textContent = werk.realisateur;
+      tableUitgever.textContent = werk.maison_d_edition;
         
         const image = document.createElement('IMG');
         image.src = werk.image;
@@ -122,7 +137,13 @@ function showFavorites() {
         tableRemove.appendChild(removeBtn);
         
         tableR.appendChild(tableImage);
-        tableR.appendChild(tableName);
+      tableR.appendChild(tableName);
+      tableR.appendChild(tableDrawer);
+      tableR.appendChild(tableDrawerKunst);
+      tableR.appendChild(tableUitgever);
+      tableR.appendChild(tableDate);
+      tableR.appendChild(tableSurface);
+      tableR.appendChild(tableAdress);
         tableR.appendChild(tableRemove);
         favList.appendChild(tableR);
     });
