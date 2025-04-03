@@ -47,7 +47,7 @@ document.getElementById("show-map").addEventListener("click", function() {
         mapSection.style.display = "block";
         
         // Verander de knoptekst naar "Toon locaties"
-        this.textContent = "Toon locaties";
+        this.textContent = "Toon muurschilderingen";
     } else {
         // Als we al op de kaart sectie zijn, terug naar locaties sectie
         mapSection.style.display = "none";
