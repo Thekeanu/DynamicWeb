@@ -1,4 +1,18 @@
 'use  strict';
+
+// voeg toe aan favorieten
+
+const favorites = (werk) => {
+  let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    if (!favorites.some(fav => fav.naam_fresco_nl === werk.naam_fresco_nl)) {
+        favorites.push(werk);
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+        alert(`${werk.naam_fresco_nl} is toegevoegd aan je favorieten!`);
+    } else {
+        alert(`${werk.naam_fresco_nl} staat al in je favorieten.`);
+    }
+}
+
   fetch('https://opendata.brussels.be/api/explore/v2.1/catalog/datasets/bruxelles_parcours_bd/records?limit=2')
   .then( response => response.json())
   .then(resultaat => {
@@ -39,6 +53,7 @@
       buttonFav.innerText = "toevoegen aan favorieten";
       const buttonId = `${werk.naam_fresco_nl}`.replaceAll(" ", "-");
       buttonFav.id = buttonId;
+      buttonFav.classList.add('favButton');
       tableFav.appendChild(buttonFav);
       
       
@@ -57,22 +72,30 @@
       //toevoegen filters aan het selectie menu 
 
     });
+    
+    const favButtons = document.querySelectorAll(".favButton");
+      
+    favButtons.forEach( button => {
+      const btn = document.getElementById(`${button.id}`);
+      btn.onclick = favorites(button.id);
+    })
+    
   })
   .catch(error => {
     document.getElementById('error-message').textContent = `Er ging iets mis: ${error.message}`;
     console.log(error.message);
   });
+  
+  
 
+
+
+//toevoegen event listeners op alle buttons
 //filter functies
-filter =  () => {
+const filter =  () => {
   naam = document.getElementById('filterNaam');
   naam.addEventlistener   
 }
 
-// voeg toe aan favorieten
-
-favorites = (id) => {
-  console.log(id);
-}
 
 
