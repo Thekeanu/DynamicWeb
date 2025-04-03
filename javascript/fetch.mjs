@@ -291,7 +291,7 @@ document.getElementById("show-favorites").addEventListener("click", function() {
   if (favoritesSection.style.display === "none") {
       favoritesSection.style.display = "block";
       locationsSection.style.display = "none";
-      this.textContent = "Toon alle locaties";
+      this.textContent = "Toon muurschilderingen";
   } else {
       favoritesSection.style.display = "none";
       locationsSection.style.display = "block";
