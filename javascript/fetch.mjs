@@ -1,5 +1,5 @@
 'use  strict';
-  fetch('https://opendata.brussels.be/api/explore/v2.1/catalog/datasets/bruxelles_parcours_bd/records?limit=2')
+  fetch('https://opendata.brussels.be/api/explore/v2.1/catalog/datasets/bruxelles_parcours_bd/records?limit=5')
   .then( response => response.json())
   .then(resultaat => {
     // selecteren van de lijst
