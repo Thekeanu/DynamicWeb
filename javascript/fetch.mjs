@@ -27,15 +27,22 @@
       tableAdress.textContent = `${werk.adres}`;
       tableDrawerKunst.textContent = `${werk.realisateur}`;
       tableUitgever.textContent = `${werk.maison_d_edition}`;
+
+      //aanmaken images
       const image = document.createElement('IMG');
-      const buttonFav = document.createElement('button');
       image.src = werk.image;
-      buttonFav.name = `${werk.naam_fresco_nl}`;
-      buttonFav.innerText = "voeg toe aan favorieten";
-      tableFav.appendChild(buttonFav);
       tableImage.appendChild(image);
-      //toevoegen van cel in de tabel
+
+      //aanmaken favorite  buttons
+      const buttonFav = document.createElement('button');
+      buttonFav.name = `${werk.naam_fresco_nl}`;
+      buttonFav.innerText = "toevoegen aan favorieten";
+      const buttonId = `${werk.naam_fresco_nl}`.replaceAll(" ", "-");
+      buttonFav.id = buttonId;
+      tableFav.appendChild(buttonFav);
       
+      
+      //toevoegen van cel in de tabel
       tableR.appendChild(tableImage);
       tableR.appendChild(tableName);
       tableR.appendChild(tableDrawer);
@@ -46,6 +53,9 @@
       tableR.appendChild(tableAdress);
       tableR.appendChild(tableFav);
       list.appendChild(tableR);
+
+      //toevoegen filters aan het selectie menu 
+
     });
   })
   .catch(error => {
@@ -54,12 +64,15 @@
   });
 
 //filter functies
-filterNaam =  () => {
+filter =  () => {
   naam = document.getElementById('filterNaam');
   naam.addEventlistener   
 }
 
+// voeg toe aan favorieten
 
-
+favorites = (id) => {
+  console.log(id);
+}
 
 
