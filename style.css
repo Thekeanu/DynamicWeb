@@ -16,7 +16,21 @@ body.light-theme {
     background-color: #ffffff;
     color: #333;
 }
+#sort {
+    background-color: white;
+    color: #0073e6;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: none;
+}
 
+#sort:hover {
+    background-color: #0073e6;
+    color: white;
+}
 /* Header styling */
 header {
     background: linear-gradient(135deg, #005bb5, #0073e6);
