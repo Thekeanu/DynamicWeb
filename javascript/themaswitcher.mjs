@@ -81,3 +81,32 @@ document.getElementById('sort').addEventListener('click', function() {
     // Voeg de gesorteerde rijen terug in de lijst
     rows.forEach(row => list.appendChild(row));
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Event listener voor live zoeken tijdens het typen
+    document.getElementById("search-name").addEventListener("input", filterByName);
+});
+
+function filterByName() {
+    let searchValue = document.getElementById("search-name").value.toLowerCase().trim();
+    let list = document.getElementById("locations-lijst");
+    let rows = list.getElementsByTagName("tr");
+    let found = false;
+
+    for (let row of rows) {
+        let nameCell = row.getElementsByTagName("td")[1]; // Tweede kolom (Naam)
+        if (nameCell) {
+            let nameText = nameCell.textContent.toLowerCase();
+            if (nameText.includes(searchValue)) {
+                row.style.display = ""; // Toon rij
+                found = true;
+            } else {
+                row.style.display = "none"; // Verberg rij
+            }
+        }
+    }
+
+    // Geef een foutmelding weer als er geen resultaten zijn
+    let noResultsMessage = document.getElementById("no-results-message");
+    noResultsMessage.textContent = found ? "" : "Geen resultaten gevonden.";
+}
