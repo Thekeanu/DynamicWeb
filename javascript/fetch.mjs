@@ -5,7 +5,7 @@ const gemeentes = [];
 const auteurs = [];
 const jaartallen = [];
 
-  await fetch('https://opendata.brussels.be/api/explore/v2.1/catalog/datasets/bruxelles_parcours_bd/records?limit=5')
+  await fetch('https://opendata.brussels.be/api/explore/v2.1/catalog/datasets/bruxelles_parcours_bd/records?limit=50')
   .then(response => response.json())
   .then(resultaat => {
 
@@ -231,71 +231,56 @@ function showFiltersAuteurs(){
 });}
 
 function listenFilters() {
+  // Verkrijg de geselecteerde waarde van de filters
   const locationFilter = document.getElementById('location-filter');
-  locationFilter.addEventListener('change', function() {
-    let selectedValue = locationFilter.value.toLowerCase().trim(); 
-   if (selectedValue != "all") {
-       selectedValue = locationFilter.value.split("-");
-       selectedValue = selectedValue[1].toLowerCase().trim();
-    }
-
-    console.log(selectedValue);
-    const list = document.getElementById('locations-lijst');
-    const rows = list.querySelectorAll('tr');
-    let filteredRows = 0;
-
-    rows.forEach(row => {
-      
-        const cells = row.querySelectorAll('td');
-      const LKolom = cells[7];
-      if (selectedValue === 'all' || LKolom.textContent.toLowerCase().includes(selectedValue)) {
-        row.style.display = "table-row";
-        filteredRows++;
-      } else {
-        row.style.display = "none";
-      }
-    });
-
-    // Geef een bericht als er geen gefilterde resultaten zijn
-    if (filteredRows === 0) {
-      const errorMessage = document.getElementById('error-message');
-      errorMessage.textContent = 'Geen resultaten gevonden voor de geselecteerde locatie.';
-    } else {
-      const errorMessage = document.getElementById('error-message');
-      errorMessage.textContent = ''; // Verberg foutmelding als er resultaten zijn
-    }
-  });
-
-  
   const auteurFilter = document.getElementById('author-filter');
-  auteurFilter.addEventListener('change', function() {
-    let selectedValue = auteurFilter.value.trim();
-    console.log(selectedValue);
-    const list = document.getElementById('locations-lijst');
-    const rows = list.querySelectorAll('tr');
-    let filteredRows = 0;
+  const jaarFilter = document.getElementById('year-filter');
 
-    rows.forEach(row => {
-      const cells = row.querySelectorAll('td');
-      const LKolom = cells[2];
-      console.log(LKolom.textContent.trim())
-      if (selectedValue === 'all' || LKolom.textContent.trim() === selectedValue) {
-        row.style.display = "table-row";
-        filteredRows++;
-      } else {
-        row.style.display = "none";
-      }
-    });
+  // Voeg een change event listener toe aan de filters
+  locationFilter.addEventListener('change', filterData);
+  auteurFilter.addEventListener('change', filterData);
+  jaarFilter.addEventListener('change', filterData);
+}
 
-    // Geef een bericht als er geen gefilterde resultaten zijn
-    if (filteredRows === 0) {
-      const errorMessage = document.getElementById('error-message');
-      errorMessage.textContent = 'Geen resultaten gevonden voor de geselecteerde locatie.';
+function filterData() {
+  let locationFilterValue = document.getElementById('location-filter').value.toLowerCase().trim();
+  if (locationFilterValue != "all" || locationFilterValue != "haren") {
+    locationFilterValue = locationFilterValue.split("-");
+    locationFilterValue = locationFilterValue[1];
+ }
+  const auteurFilterValue = document.getElementById('author-filter').value.toLowerCase().trim();
+  const jaarFilterValue = document.getElementById('year-filter').value.trim();
+
+  const list = document.getElementById('locations-lijst');
+  const rows = list.querySelectorAll('tr');
+  let filteredRows = 0;
+
+  rows.forEach(row => {
+    const cells = row.querySelectorAll('td');
+    const locationCell = cells[7].textContent.toLowerCase(); // Gemeente kolom
+    const auteurCell = cells[2].textContent.toLowerCase(); // Auteur kolom
+    const jaarCell = cells[5].textContent.trim(); // Jaar kolom
+
+    // Controleer of de rij voldoet aan alle geselecteerde filters
+    const matchesLocation = locationFilterValue === 'all' || locationCell.includes(locationFilterValue);
+    const matchesAuteur = auteurFilterValue === 'all' || auteurCell.includes(auteurFilterValue);
+    const matchesJaar = jaarFilterValue === 'all' || jaarCell === jaarFilterValue;
+
+    if (matchesLocation && matchesAuteur && matchesJaar) {
+      row.style.display = "table-row";
+      filteredRows++;
     } else {
-      const errorMessage = document.getElementById('error-message');
-      errorMessage.textContent = ''; // Verberg foutmelding als er resultaten zijn
+      row.style.display = "none";
     }
   });
+
+  // Geef een bericht als er geen gefilterde resultaten zijn
+  const errorMessage = document.getElementById('error-message');
+  if (filteredRows === 0) {
+    errorMessage.textContent = 'Geen resultaten gevonden voor de geselecteerde filters.';
+  } else {
+    errorMessage.textContent = ''; // Verberg foutmelding als er resultaten zijn
+  }
 }
 
 
