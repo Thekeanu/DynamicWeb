@@ -23,6 +23,8 @@
         </select>
         <button id="sort">Sorteren</button>
         <button id="show-favorites" class="theme-button">Toon favorieten</button>
+        <button id="show-map" class="theme-button">Toon kaart</button>
+
     </header>
     
     <main>
@@ -68,8 +70,13 @@
                 </tbody>
             </table>
         </section>
+        <section id="map" style="display: none;">
+            <h2>Kaart</h2>
+            <p>Hieronder is een kaart van Brussel met de locaties van de muurschilderingen. Klik op de markers voor meer informatie.</p>
+                <iframe src="https://opendata.brussels.be/explore/embed/dataset/bruxelles_parcours_bd/map/?disjunctive.dessinateur&disjunctive.commune_gemeente&disjunctive.maison_d_edition&disjunctive.realisateur&location=6,49.81894,13.04077&basemap=jawg.sunny&static=false&datasetcard=false&scrollWheelZoom=false" 
+                    width="100%" height="800" frameborder="0"></iframe>
+            </section>
     </main>
-    <iframe src="https://opendata.brussels.be/explore/embed/dataset/bruxelles_parcours_bd/map/?disjunctive.dessinateur&disjunctive.commune_gemeente&disjunctive.maison_d_edition&disjunctive.realisateur&location=6,49.81894,13.04077&basemap=jawg.sunny&static=false&datasetcard=false&scrollWheelZoom=false" width="400" height="300" frameborder="0"></iframe>
     <footer>
         <p>&copy; Commic tour in Brussel</p>
         <p>Ontwikkeld door Damian en Keanu</p>

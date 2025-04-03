@@ -31,3 +31,30 @@ document.addEventListener('DOMContentLoaded', () => {
     setTheme(savedTheme);
     document.getElementById('themeToggle').addEventListener('click', toggleTheme);
 });
+
+document.getElementById("show-map").addEventListener("click", function() {
+    const locationsSection = document.getElementById("locations");
+    const favoritesSection = document.getElementById("favorieten");
+    const mapSection = document.getElementById("map");
+
+    // Checken of we op de kaart sectie zitten of niet
+    if (mapSection.style.display === "none") {
+        // Verberg de locaties en favorieten secties
+        locationsSection.style.display = "none";
+        favoritesSection.style.display = "none";
+        
+        // Toon de kaart sectie
+        mapSection.style.display = "block";
+        
+        // Verander de knoptekst naar "Toon locaties"
+        this.textContent = "Toon locaties";
+    } else {
+        // Als we al op de kaart sectie zijn, terug naar locaties sectie
+        mapSection.style.display = "none";
+        locationsSection.style.display = "block";
+        favoritesSection.style.display = "none";
+        
+        // Verander de knoptekst terug naar "Toon kaart"
+        this.textContent = "Toon kaart";
+    }
+});
