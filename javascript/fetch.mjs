@@ -245,7 +245,7 @@ function listenFilters() {
     let filteredRows = 0;
 
     rows.forEach(row => {
-      if(row.style.display === "" || row.style.display === "table-row" || row.style.display == "none" && selectedValue === "all"){
+      
         const cells = row.querySelectorAll('td');
       const LKolom = cells[7];
       if (selectedValue === 'all' || LKolom.textContent.toLowerCase().includes(selectedValue)) {
@@ -253,7 +253,7 @@ function listenFilters() {
         filteredRows++;
       } else {
         row.style.display = "none";
-      }}
+      }
     });
 
     // Geef een bericht als er geen gefilterde resultaten zijn
@@ -266,6 +266,7 @@ function listenFilters() {
     }
   });
 
+  
   const auteurFilter = document.getElementById('author-filter');
   auteurFilter.addEventListener('change', function() {
     let selectedValue = auteurFilter.value.trim();
