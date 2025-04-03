@@ -10,8 +10,13 @@
     <header>
         <div id="error-message" style="color: red; display: none;"></div> <!-- Error message div -->
         <h1>Commic book tour in Brussel</h1>
+        <select id="language-selector">
+            <option value="nl">Nederlands</option>
+            <option value="en">English</option>
+        </select>
+        
         <button id="themeToggle" class="theme-button">Themakleur veranderen</button>
-        <input type="text" id="search" placeholder="Zoek een locatie">
+        <input type="text" id="search" placeholder="Zoek op naam">
         <select id="author-filter">
             <option value="all">Alle auteurs</option>
         </select>
@@ -23,6 +28,8 @@
         </select>
         <button id="sort">Sorteren</button>
         <button id="show-favorites" class="theme-button">Toon favorieten</button>
+        <button id="show-map" class="theme-button">Toon kaart</button>
+
     </header>
     
     <main>
@@ -40,9 +47,9 @@
                         <th>Groote (m)</th>
                         <th>Adres</th>
                         <th>Favoriet</th>
+                        <tbody id="locations-lijst"></tbody>
                     </tr>
                 </thead>
-                <tbody id="locations-lijst">
                 </tbody>
             </table>
         </section>
@@ -60,14 +67,21 @@
                         <th>Gemaakt in</th>
                         <th>Groote</th>
                         <th>Adres</th>
+                        <th>Verwijder</th>
+                        <th>Link</th>
                     </tr>
                 </thead>
                 <tbody id="favorietes-lijst">
                 </tbody>
             </table>
         </section>
+        <section id="map" style="display: none;">
+            <h2>Kaart</h2>
+            <p>Hieronder is een kaart van Brussel met de locaties van de muurschilderingen. Klik op de markers voor meer informatie.</p>
+                <iframe src="https://opendata.brussels.be/explore/embed/dataset/bruxelles_parcours_bd/map/?disjunctive.dessinateur&disjunctive.commune_gemeente&disjunctive.maison_d_edition&disjunctive.realisateur&location=6,49.81894,13.04077&basemap=jawg.sunny&static=false&datasetcard=false&scrollWheelZoom=false" 
+                    width="100%" height="800" frameborder="0"></iframe>
+            </section>
     </main>
-
     <footer>
         <p>&copy; Commic tour in Brussel</p>
         <p>Ontwikkeld door Damian en Keanu</p>
