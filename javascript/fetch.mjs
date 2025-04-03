@@ -191,3 +191,17 @@ function showFiltersJaar(){
 });
   
 }
+// is de favorieten sectie
+document.getElementById("show-favorites").addEventListener("click", function() {
+  const locationsSection = document.getElementById("locations");
+  const favoritesSection = document.getElementById("favorieten");
+  if (favoritesSection.style.display === "none") {
+      favoritesSection.style.display = "block";
+      locationsSection.style.display = "none";
+      this.textContent = "Toon alle locaties";
+  } else {
+      favoritesSection.style.display = "none";
+      locationsSection.style.display = "block";
+      this.textContent = "Toon favorieten";
+  }
+});
