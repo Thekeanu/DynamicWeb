@@ -3,6 +3,7 @@
 fetch('https://opendata.brussels.be/api/explore/v2.1/catalog/datasets/bruxelles_parcours_bd/records?limit=10')
   .then(response => response.json())
   .then(resultaat => {
+
     // Selecteren van de lijst
     const list = document.getElementById('locations-lijst');
     console.log(resultaat);
@@ -17,6 +18,7 @@ fetch('https://opendata.brussels.be/api/explore/v2.1/catalog/datasets/bruxelles_
       const tableName = document.createElement('td');
       const tableDescription = document.createElement('td');
       const tableFav = document.createElement('td');
+
 
       // Gegevens van de API in de table cell zetten
       tableName.textContent = werk.naam_fresco_nl || 'Onbekende naam';
@@ -49,6 +51,7 @@ fetch('https://opendata.brussels.be/api/explore/v2.1/catalog/datasets/bruxelles_
     document.getElementById('error-message').textContent = `Er ging iets mis: ${error.message}`;
     console.log(error.message);
   });
+
 
 // Favorieten opslaan in localStorage
 function addToFavorites(werk) {
@@ -102,6 +105,7 @@ function removeFromFavorites(werk) {
     localStorage.setItem('favorites', JSON.stringify(favorites));
     showFavorites();
 }
+
 
 // is de favorieten sectie
 document.getElementById("show-favorites").addEventListener("click", function() {
